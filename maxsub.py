@@ -1,6 +1,4 @@
-# create and evaluate a static autoregressive model
 from pandas import read_csv
-from datetime import datetime
 import numpy as np
 import pandas as pd
 
@@ -45,13 +43,14 @@ while j < len(bt_data):
             end = k         #the index of the end
         j=k+1  
     else: j += 1
-print("Length:" ,max)
+print("Result")   
+print("MaxLength:" ,max)
 print("Start position:",start, "Start time: ", time[start])
 print("End position:" ,end, "End time: ", time[end])
 
 
 print()
-print("The test part:")
+print("Test:")
 print(frame.iloc[start-1:end+1])        #The data in the period we get
 
 #the distribution of the level in this period
