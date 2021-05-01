@@ -15,11 +15,10 @@ from statsmodels.tsa.api import acf, pacf, graphics
 import matplotlib.pyplot as plt
 # load dataset
 #frame = pd.read_csv("./audio/audio_u00.csv",skiprows=854360, nrows = 5)
-frame = pd.read_csv("./audio/audio_u00.csv")
+frame = pd.read_csv("./audio/audio_u02.csv")
 bt_data = frame.to_numpy()
 print(len(frame))
-
-print(frame.iloc[1776786:1778680])
+#print(frame)
 level = []
 time = []
 start  = 0
@@ -39,16 +38,13 @@ each_value,each_value_count = np.unique(level,return_counts = True)
 print(each_value)
 print(each_value_count)
 
-each_value_test,each_value_count_test = np.unique(frame.iloc[1776786:1778680,1:2],return_counts = True)
-print(each_value_test)
-print(each_value_count_test)
 j = 0
 while j < len(bt_data):
-    if (level[j] == 2):
+    if (level[j] == 0):
         #print("j",j)
         k=j
         count = 0
-        while k<len(bt_data) and level[k] == 2:
+        while k<len(bt_data) and level[k] == 0:
             #print("k" ,k, "level ", level[k])
             count +=  1
             k+=1
@@ -64,3 +60,10 @@ while j < len(bt_data):
 print("Length:" ,max)
 print("Start position:",start, "Start time: ", time[start])
 print("End position:" ,end, "End time: ", time[end])
+
+
+print(frame.iloc[start-1:end+1])
+
+each_value_test,each_value_count_test = np.unique(frame.iloc[start-1:end+1,1:2],return_counts = True)
+print(each_value_test)
+print(each_value_count_test)
